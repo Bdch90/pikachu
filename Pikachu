@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pikachu</title>
+</head>
+<body>
+<div id = 'game'></div>
+<script type="text/javascript">
+	var Pikachu = function (img,top,left,size)
+	{
+		this.img = img;
+		this.top = top;
+		this.left = left;
+		this.size = size;
+
+		this.getElement = function ()
+		{
+			return '<img width= "' + this.size + '"'
+			+ 'height = "' + this.size + '"'
+			+ ' src = "' + this.img + '"'
+			+ 'style ="top : ' + this.top+'px; left:' + this.left +'px; position:absolute;">';	
+		}
+		this.moveRight= function ()
+		{
+			this.left += 20;
+		}
+		this.moveLeft = function ()
+		{
+			this.left -=20;
+		}
+		this.moveTop = function ()
+		{
+			this.top -=20;
+		}
+		this.moveDown = function ()
+		{
+			this.top += 20;
+		}
+
+	}
+	var pikachu = new Pikachu ('https://raw.githubusercontent.com/codegym-vn/objects/master/pikachu.png',20,20,100);
+	var start = function ()
+	{
+		if(pikachu.left<window.innerWidth - pikachu.size)
+	{
+			pikachu.moveDown();
+	}
+		document.getElementById('game').innerHTML = pikachu.getElement();
+		setTimeout(start,500);
+	}
+	start();
+</script>
+</body>
+</html>
